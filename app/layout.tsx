@@ -1,8 +1,46 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
+import Header from "$/components/Header/Header";
+import Footer from "$/components/Footer/Footer";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+// Font files can be colocated inside of `app`
+const myFont = localFont({
+  src: [
+    {
+      path: "./fonts/Gilroy-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-ExtraBold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Gilroy-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +54,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={myFont.className}>
+        <Link
+          className="bg-[#6865FF] fixed bottom-7 right-8 w-10 h-10 rounded-md z-[10000]"
+          href={"#home"}
+        >
+          s
+        </Link>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
