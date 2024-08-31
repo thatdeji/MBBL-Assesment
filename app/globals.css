@@ -15,19 +15,51 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-white text-black;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .shadow-custom {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  .main-container {
+    @apply mx-auto w-full px-4;
+    @screen xl {
+      width: 1110px;
+    }
+  }
+}
+
+@layer components {
+  .button {
+    @apply bg-button text-white text-lg rounded-lg shadow-button font-semibold px-6 py-2;
+  }
+  .input {
+    @apply w-full bg-input rounded-[40px] h-12 px-6 py-7 placeholder:text-gray-700 text-black text-lg;
+  }
+  .textarea {
+    @apply w-full bg-input rounded-[40px] h-[150px] px-6 py-6 placeholder:text-gray-700 text-black text-lg;
+  }
+  .section {
+    @apply mt-24 flex flex-col items-center;
+  }
+  .section__header {
+    @apply flex flex-col items-center gap-2;
+  }
+  .section__title {
+    @apply text-center text-5xl text-black font-semibold;
+  }
+  .section__description {
+    @apply text-base text-grey font-medium;
+  }
+  .card-one {
+    @apply rounded-[30px] shadow-sm space-y-4 p-16 min-h-[400px] flex flex-col justify-between w-full;
   }
 }
