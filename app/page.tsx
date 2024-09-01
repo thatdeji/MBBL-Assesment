@@ -6,7 +6,6 @@ import PaymentFeatures from "$/components/PaymentFeatures/PaymentFeatures";
 import PaymentMethods from "$/components/PaymentMethods/PaymentMethods";
 import Services from "$/components/Services/Services";
 import Testimonials from "$/components/Testimonials/Testimonials";
-import { Wavy } from "$/vectors/wavy";
 
 export default function Home() {
   return (
@@ -14,14 +13,7 @@ export default function Home() {
       <Hero />
       <PaymentFeatures />
       <PaymentMethods />
-      <div className="w-full h-[320px]">
-        <Wavy />
-      </div>
-      <div className="bg-grey2 w-full">
-        <div className="">
-          <Services />
-        </div>
-      </div>
+      <Services />
       <GetStarted />
       <Testimonials />
       <FAQ />
