@@ -1,3 +1,5 @@
+import { Facebook, LinkedIn, Pinterest, Twitter } from "$/vectors/socials";
+
 export const solutions = [
   {
     name: "Payments",
@@ -45,5 +47,28 @@ export const otherPages = [
   {
     name: "Contact",
     link: "#",
+  },
+];
+
+export const socials = [
+  {
+    name: "Facebook",
+    link: "#",
+    icon: <Facebook />,
+  },
+  {
+    name: "Twitter",
+    link: "#",
+    icon: <Twitter />,
+  },
+  {
+    name: "LinkedIn",
+    link: "#",
+    icon: <LinkedIn />,
+  },
+  {
+    name: "Pinterest",
+    link: "#",
+    icon: <Pinterest />,
   },
 ];
