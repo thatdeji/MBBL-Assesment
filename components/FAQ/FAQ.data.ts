@@ -5,6 +5,11 @@ export const faqs = [
       "No, you don't need to change banks. You can connect your existing bank account to our platform.",
   },
   {
+    question: "Do I need to change banks?",
+    answer:
+      "No, you don't need to change banks. You can connect your existing bank account to our platform.",
+  },
+  {
     question: "How can I order equipment?",
     answer:
       "You can order equipment by visiting our website or contacting us directly.",
