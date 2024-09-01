@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 html {
   @apply scroll-smooth overflow-x-hidden;
 }
@@ -23,9 +10,6 @@ body {
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
   .shadow-custom {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
@@ -113,14 +97,6 @@ body {
   @screen lg {
     .section__description {
       @apply text-base;
-    }
-  }
-  .card-one {
-    @apply rounded-[30px] shadow-sm space-y-4 p-8 min-h-[300px] flex flex-col justify-between w-full;
-  }
-  @screen lg {
-    .card-one {
-      @apply p-16 min-h-[400px];
     }
   }
 }
