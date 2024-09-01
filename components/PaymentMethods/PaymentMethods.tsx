@@ -3,7 +3,7 @@ const PaymentMethods = () => {
     <section className="section main-container ">
       <div className="section__header">
         <h2 className="section__title">
-          All major <br /> payment methods
+          All major <br className="hidden lg:block" /> payment methods
         </h2>
         <p className="section__description">
           We've got all your payments covered
