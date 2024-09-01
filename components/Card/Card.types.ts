@@ -1,4 +1,4 @@
-export interface ICardOneProps {
+export interface ICardProps {
   title: string;
   description: React.ReactNode;
   imageContent: React.ReactNode;
