@@ -2,26 +2,34 @@
 import Button from "$/components/Button/Button";
 import { useState } from "react";
 import { faqs } from "./FAQ.data";
+import Image from "next/image";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className="section main-container">
-      <div className="flex justify-between gap-5 w-full">
-        <div className="w-[45%]">
+    <section className="section main-container mb-12">
+      <div className="flex flex-col xl:flex-row  justify-between gap-5 w-full">
+        <div className="w-full xl:w-[46%] relative">
           <p className="text-base text-black border-b-2 font-medium border-[#B5EA88] mb-4 w-fit">
             Support
           </p>
-          <h2 className="text-5xl text-black font-semibold mb-1">
+          <h2 className="section__title text-left mb-1 lg:mb-4">
             Frequently <br /> Asked Questions
           </h2>
-          <p className="text-lg text-grey font-normal mb-7">
+          <p className="textsm lg:text-lg text-grey font-normal mb-2 lg:mb-7">
             Seut ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium.
           </p>
           <Button className="w-fit mb-4">Get in Touch</Button>
+          <Image
+            src="https://res.cloudinary.com/dexg5uy3d/image/upload/v1725198339/image_65_kmpqdg.png"
+            alt=""
+            width={140}
+            height={200}
+            className="h-auto max-w-full absolute bottom-[10%] right-[30%] hidden xl:block"
+          />
         </div>
-        <div className="w-[45%]">
+        <div className="w-full xl:w-[46%]">
           <ul className="list-none flex flex-col w-full">
             {faqs.map(({ answer, question }, index) => (
               <li
