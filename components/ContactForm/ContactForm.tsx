@@ -11,12 +11,6 @@ const initialState = {
   message: "",
 };
 
-const encode = (data: any) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
-
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState(initialState);
