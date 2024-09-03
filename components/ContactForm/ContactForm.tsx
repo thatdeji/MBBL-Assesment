@@ -25,18 +25,11 @@ const ContactForm = () => {
     e.preventDefault();
     setLoading(true);
     console.log(formState);
-    const formData = new FormData();
-    formData.set("email", formState.email);
-    formData.set("firstName", formState.name);
-    formData.set("lastName", formState.phone);
-    formData.set("message", formState.message);
-    fetch("/", {
+    const formData = new FormData(e.target as HTMLFormElement);
+    fetch("/__forms.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": "mbbl-contact",
-        ...formState,
-      }),
+      body: new URLSearchParams(formData as any).toString(),
     })
       .then(() => {
         toast.success("Message sent successfully");
@@ -69,6 +62,8 @@ const ContactForm = () => {
         </div>
         <div className="relative flex flex-col gap-3 max-w-[600px] mx-auto items-center">
           <input
+            name="name"
+            type="text"
             onChange={(e) =>
               setFormState({ ...formState, name: e.target.value })
             }
@@ -78,6 +73,8 @@ const ContactForm = () => {
             placeholder="Full name"
           />
           <input
+            name="email"
+            type="email"
             onChange={(e) =>
               setFormState({ ...formState, email: e.target.value })
             }
@@ -87,6 +84,8 @@ const ContactForm = () => {
             placeholder="Email address"
           />
           <input
+            name="phone"
+            type="text"
             onChange={(e) =>
               setFormState({ ...formState, phone: e.target.value })
             }
@@ -96,6 +95,7 @@ const ContactForm = () => {
             placeholder="Phone number"
           />
           <textarea
+            name="message"
             onChange={(e) =>
               setFormState({ ...formState, message: e.target.value })
             }
