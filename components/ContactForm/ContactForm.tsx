@@ -26,7 +26,7 @@ const ContactForm = () => {
     setLoading(true);
     console.log(formState);
     const formData = new FormData(e.target as HTMLFormElement);
-    fetch("/__forms.html", {
+    fetch("/forms.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
