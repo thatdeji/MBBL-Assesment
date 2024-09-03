@@ -17,6 +17,26 @@ export const montserratAlternates = Montserrat_Alternates({
 export const metadata: Metadata = {
   title: "TEAM FORCE",
   description: "The next generation payment ways.",
+  twitter: {
+    card: "summary_large_image",
+    site: "@Teamforce",
+    creator: "@Teamforce",
+    images:
+      "https://res.cloudinary.com/dexg5uy3d/image/upload/v1725201486/hero-img-2-1_yjo2wt.png",
+    description: "The next generation payment ways.",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://teamforce.netlify.app/",
+    title: "Teamforce",
+    description: "The next generation payment ways.",
+    siteName: "Teamforce",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dexg5uy3d/image/upload/v1725201486/hero-img-2-1_yjo2wt.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
