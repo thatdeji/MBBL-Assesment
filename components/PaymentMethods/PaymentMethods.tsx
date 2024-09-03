@@ -80,7 +80,7 @@ const PaymentMethods = () => {
           All major <br className="hidden lg:block" /> payment methods
         </h2>
         <p className="section__description">
-          We've got all your payments covered
+          We&apos;ve got all your payments covered
         </p>
       </div>
 

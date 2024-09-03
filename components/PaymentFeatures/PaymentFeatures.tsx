@@ -44,10 +44,11 @@ const PaymentFeatures = () => {
     >
       <div className="section__header mb-6 lg:mb-12">
         <h2 className="section__title">
-          You'll love our <br className="hidden lg:block" /> powerful payments.
+          You&apos;ll love our <br className="hidden lg:block" /> powerful
+          payments.
         </h2>
         <p className="section__description">
-          We've got all your payments covered
+          We&apos;ve got all your payments covered
         </p>
       </div>
       <div

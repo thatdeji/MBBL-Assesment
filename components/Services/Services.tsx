@@ -29,7 +29,7 @@ const Services = () => {
         initCountUp();
       },
     });
-  }, []);
+  });
 
   async function initCountUp() {
     const countUpModule = await import("countup.js");
@@ -101,7 +101,7 @@ const Services = () => {
               you
             </h2>
             <p className="section__description text-left">
-              We've got all your payments covered
+              We&apos;ve got all your payments covered
             </p>
           </div>
           <div

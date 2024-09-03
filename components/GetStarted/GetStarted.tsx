@@ -112,7 +112,7 @@ const GetStarted = () => {
           Open An Account
         </p>
         <h2 className="section__title mb-2 lg:mb-10 text-left">
-          Let's get started
+          Let&apos;s get started
         </h2>
         <ol className="flex flex-col mb-1 lg:mb-12 list-none p-0 m-0 w-full">
           <li className="w-full flex gap-6 items-center border-b-[0.5px] border-b-[#EDF5FA] py-5">
