@@ -26,7 +26,7 @@ const ContactForm = () => {
     setLoading(true);
     console.log(formState);
     const formData = new FormData(e.target as HTMLFormElement);
-    fetch("/forms.html", {
+    fetch("/__forms.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData as any).toString(),
@@ -47,8 +47,8 @@ const ContactForm = () => {
     <section className="main-container">
       <form
         onSubmit={handlesSubmit}
-        method="post"
-        data-netlify="true"
+        // method="post"
+        // data-netlify="true"
         name="mbbl-contact"
         className="relative py-10 px-4 rounded-[40px] -mb-footer overflow-hidden"
       >
@@ -61,6 +61,7 @@ const ContactForm = () => {
           />
         </div>
         <div className="relative flex flex-col gap-3 max-w-[600px] mx-auto items-center">
+          <input type="hidden" name="form-name" value="mbbl-contact" />
           <input
             name="name"
             type="text"
