@@ -2,6 +2,7 @@ import { Mail } from "$/vectors/mail";
 import { Phone } from "$/vectors/phone";
 import Image from "next/image";
 import { otherPages, socials, solutions } from "./Footer.data";
+import { ArrowDown } from "$/vectors/arrow-down";
 
 const Footer = () => {
   return (
@@ -111,9 +112,10 @@ const Footer = () => {
           <p className="text-grey text-base text-center order-3 md:order-2">
             Full Copyright & Design By Teamforce © 2024
           </p>
-          <div className="bg-white w-[120px] h-8 rounded-[10px] items-center px-4 flex gap-1 order-2 md:order-3">
+          <button className="bg-white w-[120px] h-8 rounded-[10px] items-center justify-center px-2 flex gap-2 order-2 md:order-3">
             <p className="text-xs font-normal text-grey">English (US)</p>
-          </div>
+            <ArrowDown />
+          </button>
         </div>
       </div>
     </footer>

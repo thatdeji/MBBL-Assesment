@@ -30,12 +30,18 @@ body {
 
 @layer components {
   .button {
-    @apply bg-button text-white text-sm rounded-lg shadow-button font-semibold px-6 py-3;
+    @apply bg-button text-white text-sm rounded-lg shadow-button font-semibold px-6 py-3 hover:shadow-buttonHover hover:-translate-y-[2px] transition-all duration-300 ease-in-out;
   }
   @screen lg {
     .button {
       @apply text-base;
     }
+  }
+  .link {
+    @apply text-base font-normal text-white cursor-pointer relative hover:text-opacity-90 transition-all duration-300 before:content-[""] before:absolute before:-bottom-1 before:h-[1px] before:w-0 before:bg-white before:transition-all before:duration-200 before:ease-in-out hover:before:w-full;
+  }
+  .mobile-link {
+    @apply text-3xl font-semibold text-grey overflow-hidden;
   }
   .input {
     @apply w-full bg-input rounded-[20px] h-10 px-6 py-6 placeholder:text-gray-700 text-black text-lg;

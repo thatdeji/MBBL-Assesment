@@ -5,6 +5,7 @@ import Footer from "$/components/Footer/Footer";
 import Link from "next/link";
 import { Montserrat_Alternates } from "next/font/google";
 import { ChevronUp } from "$/vectors/chevron-up";
+import { Toaster } from "react-hot-toast";
 
 export const montserratAlternates = Montserrat_Alternates({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
         >
           <ChevronUp />
         </Link>
+        <Toaster />
       </body>
     </html>
   );

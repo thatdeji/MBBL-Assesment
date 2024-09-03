@@ -1,11 +1,91 @@
+"use client";
 import StackedCard from "$/components/StackedCard/StackedCard";
 import Image from "next/image";
 import { stats, tools } from "./Services.data";
 import { Brush } from "$/vectors/brush";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
+  const servicesRef = useRef<HTMLElement | null>(null);
+  const countupOneRef = useRef<HTMLSpanElement | null>(null);
+  const countupTwoRef = useRef<HTMLSpanElement | null>(null);
+  const countupThreeRef = useRef<HTMLSpanElement | null>(null);
+
+  let countUpAnimOne;
+  let countUpAnimTwo;
+  let countUpAnimThree;
+
+  useEffect(() => {
+    ScrollTrigger.create({
+      trigger: "#stats",
+      start: "top center",
+      onEnter: () => {
+        initCountUp();
+      },
+    });
+  }, []);
+
+  async function initCountUp() {
+    const countUpModule = await import("countup.js");
+    const counUpOneCurrent = countupOneRef?.current;
+    const counUpTwoCurrent = countupTwoRef?.current;
+    const counUpThreeCurrent = countupThreeRef?.current;
+    if (counUpOneCurrent && counUpTwoCurrent && counUpThreeCurrent) {
+      countUpAnimOne = new countUpModule.CountUp(counUpOneCurrent, 4);
+      countUpAnimTwo = new countUpModule.CountUp(counUpTwoCurrent, 240);
+      countUpAnimThree = new countUpModule.CountUp(counUpThreeCurrent, 78);
+      if (
+        !countUpAnimOne.error &&
+        !countUpAnimTwo.error &&
+        !countUpAnimThree.error
+      ) {
+        countUpAnimOne.start();
+        countUpAnimTwo.start();
+        countUpAnimThree.start();
+      } else {
+        console.error(countUpAnimOne.error);
+        console.error(countUpAnimTwo.error);
+        console.error(countUpAnimThree.error);
+      }
+    }
+  }
+
+  useGSAP(
+    () => {
+      gsap.set("[data-anim='brush'] path", {
+        strokeDasharray: 470,
+        strokeDashoffset: 470,
+      });
+      gsap.set("[data-anim='services-icon']", {
+        y: 60,
+        opacity: 0,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#stacked-cards",
+          start: "top center",
+        },
+      });
+      tl.to("[data-anim='services-icon']", {
+        y: 0,
+        opacity: 1,
+        ease: "sine.inOut",
+        stagger: 0.1,
+      });
+    },
+    {
+      scope: servicesRef,
+    }
+  );
   return (
-    <section className="relative w-full lg:pt-36">
+    <section ref={servicesRef} className="relative w-full lg:pt-36">
       <div className="absolute top-0 left-0 w-full h-[80px] md:h-[100px] lg:h-[420px]">
         <Image
           fill
@@ -24,29 +104,66 @@ const Services = () => {
               We've got all your payments covered
             </p>
           </div>
-          <div className="flex lg:items-center gap-2 lg:gap-10 relative">
+          <div
+            id="stats"
+            className="flex lg:items-center gap-2 lg:gap-10 relative"
+          >
             <div className="absolute -bottom-4 left-0 w-full h-[18px]">
-              <Brush />
+              <Brush data-anim="brush" />
             </div>
-            {stats.map((item) => (
+
+            <div className="flex flex-col lg:gap-1">
+              <h4 className="text-xl lg:text-4xl text-black font-semibold">
+                <span ref={countupOneRef}>0</span>m
+              </h4>
+              <p className="text-xs lg:text-sm text-grey font-medium">
+                Active Users
+              </p>
+            </div>
+
+            <div className="flex flex-col lg:gap-1">
+              <h4 className="text-xl lg:text-4xl text-black font-semibold">
+                <span ref={countupTwoRef}>0</span>+
+              </h4>
+              <p className="text-xs lg:text-sm text-grey font-medium">
+                Trusted Companies
+              </p>
+            </div>
+
+            <div className="flex flex-col lg:gap-1">
+              <h4 className="text-xl lg:text-4xl text-black font-semibold">
+                <span ref={countupThreeRef}>0</span>k
+              </h4>
+              <p className="text-xs lg:text-sm text-grey font-medium">
+                Customer care
+              </p>
+            </div>
+            {/* {stats.map((item) => (
               <div key={item.name} className="flex flex-col lg:gap-1">
-                <h4 className="text-xl lg:text-4xl text-black font-semibold">
+                <h4
+                  ref={countupRef}
+                  className="text-xl lg:text-4xl text-black font-semibold"
+                >
                   {item.value}
                 </h4>
                 <p className="text-xs lg:text-sm text-grey font-medium">
                   {item.name}
                 </p>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 place-items-stretch gap-10 p-6 w-full">
+        <div
+          id="stacked-cards"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 place-items-stretch gap-10 p-6 w-full"
+        >
           {/* <!-- Card 1 --> */}
           <div className="h-full">
             <StackedCard
               icon={
-                <div className="relative w-7 h-7 lg:w-10 lg:h-10">
+                <div className="relative w-7 h-7 lg:w-10 lg:h-10 overflow-hidden">
                   <Image
+                    data-anim="services-icon"
                     src="https://res.cloudinary.com/dexg5uy3d/image/upload/v1725158147/sv-icon-2-1_ltimof.png"
                     alt=""
                     fill
@@ -62,8 +179,9 @@ const Services = () => {
           <div className="h-full">
             <StackedCard
               icon={
-                <div className="relative w-8 h-7 lg:w-11 lg:h-10">
+                <div className="relative w-8 h-7 lg:w-11 lg:h-10 overflow-hidden">
                   <Image
+                    data-anim="services-icon"
                     src="https://res.cloudinary.com/dexg5uy3d/image/upload/v1725158147/sv-icon-2-2_fkfvfz.png"
                     alt=""
                     fill
@@ -79,8 +197,9 @@ const Services = () => {
           <div className="h-full">
             <StackedCard
               icon={
-                <div className="relative w-8 h-5 lg:w-10 lg:h-7">
+                <div className="relative w-8 h-5 lg:w-10 lg:h-7 overflow-hidden">
                   <Image
+                    data-anim="services-icon"
                     src="https://res.cloudinary.com/dexg5uy3d/image/upload/v1725158147/sv-icon-2-3_drvsp0.png"
                     alt=""
                     fill
@@ -96,8 +215,9 @@ const Services = () => {
           <div className="h-full">
             <StackedCard
               icon={
-                <div className="relative w-7 h-6 lg:w-10 lg:h-9">
+                <div className="relative w-7 h-6 lg:w-10 lg:h-9 overflow-hidden">
                   <Image
+                    data-anim="services-icon"
                     src="https://res.cloudinary.com/dexg5uy3d/image/upload/v1725158147/sv-icon-2-4_p96tex.png"
                     alt=""
                     fill

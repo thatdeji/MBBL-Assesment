@@ -1,13 +1,33 @@
 "use client";
 import Button from "$/components/Button/Button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { faqs } from "./FAQ.data";
 import Image from "next/image";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 const FAQ = () => {
+  const faqRef = useRef<HTMLElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  useGSAP(
+    () => {
+      faqs.forEach((_, index) => {
+        gsap.to(`[data-anim='faq-answer-${index}']`, {
+          maxHeight: activeIndex === index ? `100px` : 0,
+          duration: 0.5,
+        });
+      });
+    },
+    {
+      scope: faqRef,
+      dependencies: [activeIndex],
+    }
+  );
+
   return (
-    <section className="section main-container mb-12">
+    <section ref={faqRef} className="section main-container mb-12">
       <div className="flex flex-col xl:flex-row  justify-between gap-5 w-full">
         <div className="w-full xl:w-[46%] relative">
           <p className="text-base text-black border-b-2 font-medium border-[#B5EA88] mb-4 w-fit">
@@ -52,20 +72,26 @@ const FAQ = () => {
                         ? setActiveIndex(-1)
                         : setActiveIndex(index);
                     }}
-                    className={`w-4 h-4 rounded-full border border-grey flex items-center justify-center`}
+                    className={`w-4 h-4 rounded-full border border-grey flex items-center justify-center 
+                     `}
                   >
                     <span className="text-base text-grey">
                       {activeIndex === index ? "-" : "+"}
                     </span>
                   </button>
                 </div>
-                <span
-                  className={`text-base text-grey font-normal overflow-hidden pr-6  ${
-                    activeIndex === index ? "max-h-[1000px]" : "max-h-0"
-                  }`}
+                <div
+                  className="overflow-hidden"
+                  data-anim={`faq-answer-${index}`}
                 >
-                  {answer}
-                </span>
+                  <span
+                    className={`text-base text-grey font-normal overflow-hidden pr-6  
+                 
+                  `}
+                  >
+                    {answer}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>

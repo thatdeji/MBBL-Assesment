@@ -1,10 +1,60 @@
+"use client";
 import Button from "$/components/Button/Button";
 import Image from "next/image";
-// F7FBFD
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
 const GetStarted = () => {
+  const getStartedRef = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      gsap.set("[data-anim='card-bg-img']", {
+        y: 25,
+        opacity: 0,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#get-started-images",
+          start: "top center",
+        },
+      });
+
+      tl.to("[data-anim='get-started-img-one']", {
+        repeat: -1,
+        y: 40,
+        yoyo: true,
+        yoyoEase: true,
+        ease: "sine.inOut",
+        duration: 2,
+      });
+
+      tl.to("[data-anim='get-started-img-two']", {
+        repeat: -1,
+        y: -40,
+        yoyo: true,
+        yoyoEase: true,
+        ease: "sine.inOut",
+        duration: 2,
+      });
+    },
+    {
+      scope: getStartedRef,
+    }
+  );
+
   return (
-    <section className="flex flex-col xl:flex-row justify-between gap-8 section main-container">
-      <div className="hidden lg:block w-[48%] relative">
+    <section
+      ref={getStartedRef}
+      className="flex flex-col xl:flex-row justify-between gap-8 section main-container"
+    >
+      <div id="get-started-images" className="hidden lg:block w-[48%] relative">
         <div className="">
           <Image
             width={450}
@@ -23,7 +73,10 @@ const GetStarted = () => {
             className="h-auto max-w-full"
           />
         </div>
-        <div className="absolute top-[-28px] left-[-15%]">
+        <div
+          data-anim="get-started-img-one"
+          className="absolute top-[-28px] left-[-15%]"
+        >
           <Image
             width={74}
             height={100}
@@ -32,7 +85,10 @@ const GetStarted = () => {
             className="h-auto max-w-full"
           />
         </div>
-        <div className="absolute bottom-[-26px] right-[2%]">
+        <div
+          data-anim="get-started-img-two"
+          className="absolute bottom-[-26px] right-[2%]"
+        >
           <Image
             width={64}
             height={64}

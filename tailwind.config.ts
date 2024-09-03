@@ -29,6 +29,7 @@ const config: Config = {
       },
       boxShadow: {
         button: "0px 2px 3px rgba(3, 22, 3, 0.2)",
+        buttonHover: "0px 8px 24px 0px rgba(25, 118, 41, 0.3)",
         stackedCard:
           "0px 30px 30px rgba(1, 10, 10, 0.1), inset 0px 0px 0.5px rgba(255, 255, 255, 0.25)",
         icon: "0px 1px 2px rgba(1, 16, 61, 0.14)",
